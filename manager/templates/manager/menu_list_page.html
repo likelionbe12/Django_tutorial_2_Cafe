@@ -1,0 +1,12 @@
+<h1>{{cafe_name}} 메뉴 리스트</h1>
+<a href="{% url 'manager:manager_home' %}">Home</a>
+
+<ul>
+{% for menu in menus_to_page %}
+<li>
+    {{menu.menu_name}} : {{menu.menu_price}}
+</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'manager:menu_add_page' %}">메뉴추가</a>
