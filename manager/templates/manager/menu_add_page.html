@@ -2,7 +2,9 @@
 <a href="{% url 'manager:manager_home' %}">
     Home
 </a>
-
+{% if message %}
+<h2>{{message}}</h2>
+{% endif %}
 <form action="{% url 'manager:add_menu_data' %}" method="post">
     {% csrf_token %}
     <label for="">메뉴이름</label>

@@ -4,9 +4,10 @@
 <ul>
 {% for menu in menus_to_page %}
 <li>
-    {{menu.menu_name}} : {{menu.menu_price}}
+    <a href="{% url 'manager:menu_detail' menu.id %}">{{menu.menu_name}} : {{menu.menu_price}}</a>
 </li>
 {% endfor %}
 </ul>
 
 <a href="{% url 'manager:menu_add_page' %}">메뉴추가</a>
+<a href="{% url 'manager:manager_home' %}"></a>
