@@ -9,5 +9,7 @@ urlpatterns = [
     # 메뉴 디테일 페이지 추가
     path('detail/<int:menu_id>/', views.menu_detail, name="menu_detail"),
     path('add_option/<int:menu_id>/', views.add_option, name='add_option'),
-    path('add_option_data/', views.add_option_data, name='add_option_data')
+    path('add_option_data/', views.add_option_data, name='add_option_data'),
+    path('create/', views.create, name="menu_create"),
+    path('<int:pk>/update/', views.update, name="menu_update"),
 ]

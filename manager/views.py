@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import Menu, Option
+from django.urls import reverse
+
 # Create your views here.
 def index_view(request):
     return render(request, 'manager/index.html')
@@ -50,3 +53,28 @@ def add_option_data(request):
     Option.objects.create(menu=menu, option_name=option_name_from_form, option_price=option_price_from_form)
     context = {"menu":menu}
     return render(request, 'manager/add_option.html', context) # option 추가 화면 보여주기
+
+def create(request):
+    if request.method =="POST":
+        menu_name=request.POST['menu_name']
+        menu_price=request.POST['menu_price']
+        Menu.objects.create(menu_name=menu_name, menu_price=menu_price)
+        return HttpResponseRedirect(reverse('manager:manager_home'))
+    # model = Menu
+    # success_url = reverse('manager:manager_home')
+    elif request.method == "GET":
+        return render(request, 'manager/create.html')
+    # templates_name = 'manager/create.html'
+
+def update(request, pk): # pk로 구분되는 어떤 대상이 있는 상황
+    if request.method =="POST":
+        return HttpResponseRedirect(reverse('manager:manager_home'))
+    # model = Menu
+    # success_url = reverse('manager:manager_home')
+    elif request.method == "GET":    # 원래 내용을 담는다
+        menu = Menu.objects.get(pk=pk)
+        context = {
+            "menu_name":menu.menu_name,
+            "menu_price":menu.menu_price
+        }
+        return render(request, 'manager/update.html', context)
