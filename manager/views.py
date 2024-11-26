@@ -68,6 +68,13 @@ def create(request):
 
 def update(request, pk): # pk로 구분되는 어떤 대상이 있는 상황
     if request.method =="POST":
+        menu_name=request.POST['menu_name']
+        menu_price=request.POST['menu_price']
+        # Menu.objects.create(menu_name=menu_name, menu_price=menu_price)
+        menu = Menu.objects.get(pk=pk)
+        menu.menu_name=menu_name
+        menu.menu_price=menu_price
+        menu.save()        
         return HttpResponseRedirect(reverse('manager:manager_home'))
     # model = Menu
     # success_url = reverse('manager:manager_home')
