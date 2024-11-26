@@ -12,4 +12,5 @@ urlpatterns = [
     path('add_option_data/', views.add_option_data, name='add_option_data'),
     path('create/', views.create, name="menu_create"),
     path('<int:pk>/update/', views.update, name="menu_update"),
+    path('<int:pk>/delete/', views.delete, name="menu_delete"),
 ]

@@ -78,3 +78,8 @@ def update(request, pk): # pk로 구분되는 어떤 대상이 있는 상황
             "menu_price":menu.menu_price
         }
         return render(request, 'manager/update.html', context)
+    
+def delete(requst, pk):
+    menu = Menu.objects.get(pk=pk)
+    menu.delete()
+    return HttpResponseRedirect(reverse('manager:menu_list_page')) # success_url
